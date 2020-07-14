@@ -85,11 +85,13 @@ const styles = StyleSheet.create({
   data:{
     backgroundColor: 'lightgray',
     justifyContent: 'space-between',
+    width: '75%',
   },
   dataHeader:{
     justifyContent: 'space-between',
     flexDirection: 'row',
-    paddingHorizontal: 5,
+    paddingRight: 5,
+    paddingLeft: 2,
   },
   dataBody:{
     marginVertical: 5,
@@ -98,7 +100,8 @@ const styles = StyleSheet.create({
   dataFooter:{
     justifyContent: 'space-between',
     flexDirection: 'row',
-    paddingHorizontal: 5,
+    paddingRight: 5,
+    paddingLeft: 2,
   },
   name:{
     fontWeight: 'bold',
