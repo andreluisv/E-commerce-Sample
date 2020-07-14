@@ -47,15 +47,15 @@ function Home(){
         />
         <View style={styles.data}>
           <View style={styles.dataHeader}>
-            <Text>{product.name}</Text>
+            <Text style={styles.name}>{product.name}</Text>
             <TouchableOpacity><Text>edit</Text></TouchableOpacity>
           </View>
           <View style={styles.dataBody}>
-            <Text>{product.description}</Text>
+            <Text style={styles.description}>{product.description}</Text>
           </View>
           <View style={styles.dataFooter}>
-            <Text>{product.category}</Text>
-            <Text>{product.price}</Text>
+            <Text style={styles.category}>{product.category}</Text>
+            <Text style={styles.price}>{product.price}</Text>
           </View>
         </View>
       </View>
@@ -79,24 +79,43 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'darkgray',
+    height: 150,
+    width: '100%',
   },
   data:{
-    backgroundColor: 'lightgray'
+    backgroundColor: 'lightgray',
+    justifyContent: 'space-between',
   },
   dataHeader:{
     justifyContent: 'space-between',
     flexDirection: 'row',
+    paddingHorizontal: 5,
   },
   dataBody:{
-    marginVertical: 5
+    marginVertical: 5,
+    paddingHorizontal: 2,
   },
   dataFooter:{
     justifyContent: 'space-between',
     flexDirection: 'row',
+    paddingHorizontal: 5,
+  },
+  name:{
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  description:{
+
+  },
+  category:{
+    fontSize: 15,
+  },
+  price:{
+    fontWeight: 'bold',
   },
   picture_url:{
-    width: 150,
-    height: 150,
+    width: '25%',
+    height: 150
   },
 });
 
