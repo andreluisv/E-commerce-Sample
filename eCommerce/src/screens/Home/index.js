@@ -42,7 +42,7 @@ function Home(){
     return (
       <View style={styles.product}>
         <Image 
-          styles={styles.picture_url}
+          style={{width: '25%', height: 150}}
           source={{ uri: product.image_url}}
         />
         <View style={styles.data}>
@@ -115,10 +115,6 @@ const styles = StyleSheet.create({
   },
   price:{
     fontWeight: 'bold',
-  },
-  picture_url:{
-    width: '25%',
-    height: 150
   },
 });
 

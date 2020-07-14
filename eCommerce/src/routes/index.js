@@ -6,7 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 
 const Stack = createStackNavigator();
-
 function RootStack() {
   return (
     <NavigationContainer>
@@ -18,7 +17,7 @@ function RootStack() {
                 name="Home"
                 component={Home}
                 options={{
-                    headerTitle: <Text>Home</Text>,
+                    headerTitle: <Text>E-Commerce</Text>,
                 }}
             />
         </Stack.Navigator>
