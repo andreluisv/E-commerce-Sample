@@ -4,24 +4,37 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from '../screens/Home';
+import NewProduct from '../screens/NewProduct';
 
 const Stack = createStackNavigator();
-function RootStack() {
+
+const RootStack = () => {
   return (
-    <NavigationContainer>
-        <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={{ gestureEnabled: true }}
-        >
-            <Stack.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    headerTitle: <Text>E-Commerce</Text>,
-                }}
-            />
-        </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{ gestureEnabled: true }}
+    >
+        <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+                headerTitle: <Text>Home</Text>,
+            }}
+        />
+
+        <Stack.Screen 
+            name="NewProduct"
+            component={NewProduct}
+            options={{
+                headerTitle: <Text>New Product</Text>,
+                headerRight: () => (
+                    <TouchableOpacity style={{marginRight: 5}}>
+                        <Text>Confirm</Text>
+                    </TouchableOpacity>
+                ),
+            }}
+        />
+    </Stack.Navigator>
   );
 }
 

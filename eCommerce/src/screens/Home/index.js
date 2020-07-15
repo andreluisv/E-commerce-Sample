@@ -6,7 +6,8 @@ import {
   Text,
   Image,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Button
 } from 'react-native';
 
 export default class Home extends React.Component{
@@ -18,7 +19,7 @@ export default class Home extends React.Component{
     }
   }
 
-  renderItem({ item: product }){
+  renderItem = ({ item: product }) => {
     return (
       <View style={styles.product}>
         <Image 
@@ -56,17 +57,27 @@ export default class Home extends React.Component{
     this.setState({id_counter: id, items_list: list});
   }
 
-  render(){
+  render = () => {
     return(
-      <SafeAreaView>
-        <FlatList
-          data={this.state.items_list}
-          extraData={this.state}
-          keyExtractor={item => item.id}
-          renderItem={this.renderItem}
-        ></FlatList>
-        <TouchableOpacity onPress={this.addNewItem}><Text>Quick Add</Text></TouchableOpacity>
-      </SafeAreaView>
+      <View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Button
+            title="Add a new product"
+            onPress={() =>
+              this.props.navigation.navigate('NewProduct')
+            }
+            />
+          <TouchableOpacity onPress={this.addNewItem}><Text>Quick Add</Text></TouchableOpacity>
+        </View>
+        <SafeAreaView>
+          <FlatList
+            data={this.state.items_list}
+            extraData={this.state}
+            keyExtractor={item => item.id}
+            renderItem={this.renderItem}
+          ></FlatList>
+        </SafeAreaView>
+      </View>
     );
   }
 };

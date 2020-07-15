@@ -4,5 +4,5 @@ import { NavigationContainer } from '@react-navigation/native';
 import Routes from './src/routes';
 
 export default function App(){
-  return <Routes />;
+  return <NavigationContainer><Routes /></NavigationContainer>;
 };
