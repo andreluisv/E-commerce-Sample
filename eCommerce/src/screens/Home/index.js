@@ -9,36 +9,16 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const products = [
-  {
-    id: '1',
-    name: "Microondas Midea",
-    category: "Eletrodomésticos",
-    price: "R$ 391,20",
-    description: "Nova linha de micro-ondas midea seu novo aliado do a As principais novidades da nova linha de micro-ondas são as funções eco e limpa fácil",
-    image_url: "https://images-na.ssl-images-amazon.com/images/I/51bWyekTxwL._AC_SL1000_.jpg",
-  },
-  {
-    id: '2',
-    name: "Kit Tênis de Mesa",
-    category: "Esportes e Aventura",
-    price: "R$ 29,00",
-    description: "Kit de tênis de mesa com, 2 raquetes e 3 Bola, material das Raquetes, borracha e madeira, bolinhas em plástico de alta resistência.",
-    image_url: "https://images-na.ssl-images-amazon.com/images/I/61SqH9bQ3EL._AC_SL1500_.jpg",
-  },
-  {
-    id: '3',
-    name: "Mouse Sem Fio Multilaser",
-    category: "Computadores e Informática",
-    price: "R$ 19,90",
-    description: "Mouse com um design anatômico, com um alcance de 10 metros com plug & play e com um super dpi de 1200.",
-    image_url: "https://images-na.ssl-images-amazon.com/images/I/812XGlze09L._AC_SL1500_.jpg",
+export default class Home extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      id_counter: 0,
+      items_list: []
+    }
   }
-];
 
-function Home(){
-
-  function renderItem({ item: product }){
+  renderItem({ item: product }){
     return (
       <View style={styles.product}>
         <Image 
@@ -62,15 +42,33 @@ function Home(){
     );
   }
 
-  return(
-    <SafeAreaView>
-      <FlatList
-        data={products}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-      ></FlatList>
-    </SafeAreaView>
-  );
+  addNewItem = () => {
+    let list = this.state.items_list;
+    let id = this.state.id_counter+1;
+    list.push({
+      id: String(id),
+      name: "This item id: "+String(id),
+      category: "generic",
+      price: "R$",
+      description: "generic",
+      image_url: "",
+    });
+    this.setState({id_counter: id, items_list: list});
+  }
+
+  render(){
+    return(
+      <SafeAreaView>
+        <FlatList
+          data={this.state.items_list}
+          extraData={this.state}
+          keyExtractor={item => item.id}
+          renderItem={this.renderItem}
+        ></FlatList>
+        <TouchableOpacity onPress={this.addNewItem}><Text>Quick Add</Text></TouchableOpacity>
+      </SafeAreaView>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -117,5 +115,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default Home;
