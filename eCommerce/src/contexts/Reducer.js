@@ -6,6 +6,11 @@ const Reducer = (state, action) => {
                 id_counter: parseInt(action.product.id),
                 items_list: state.items_list.concat(action.product)
             };
+        case 'EDIT_PRODUCT':
+            return{
+                ...state,
+                items_list: action.newList
+            };
         default:
             alert("Error, bad call!");
             return state;

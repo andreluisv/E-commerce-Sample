@@ -25,7 +25,7 @@ const Home = () => {
         <View style={styles.data}>
           <View style={styles.dataHeader}>
             <Text style={styles.name}>{product.name}</Text>
-            <TouchableOpacity><Text>edit</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => {editMe(product.id)}}><Text>edit</Text></TouchableOpacity>
           </View>
           <View style={styles.dataBody}>
             <Text style={styles.description}>{product.description}</Text>
@@ -50,6 +50,12 @@ const Home = () => {
         image_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmBTU9UngAQttEWIptLiqXcZbkGG4V45iy4HRgjzYFowtmP55oAQ&usqp=CAc",
       }
     });
+  }
+
+  editMe = (id) => {
+    let list = state.items_list;
+    list.forEach((item) => {if (item.id == id) item.name = "edited"});
+    dispatch({type: 'EDIT_PRODUCT', newList: list});
   }
 
   return(
