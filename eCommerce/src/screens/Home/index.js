@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   SafeAreaView,
@@ -10,16 +10,12 @@ import {
   Button
 } from 'react-native';
 
-export default class Home extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      id_counter: 0,
-      items_list: []
-    }
-  }
+import {Context} from '../../contexts/data';
 
-  renderItem = ({ item: product }) => {
+const Home = () => {
+  [state, dispatch] = useContext(Context);
+  
+  const renderItem = ({ item: product }) => {
     return (
       <View style={styles.product}>
         <Image 
@@ -44,42 +40,39 @@ export default class Home extends React.Component{
   }
 
   addNewItem = () => {
-    let list = this.state.items_list;
-    let id = this.state.id_counter+1;
-    list.push({
-      id: String(id),
-      name: "This item id: "+String(id),
-      category: "generic",
-      price: "R$",
-      description: "generic",
-      image_url: "",
+    dispatch({type: 'NEW_PRODUCT', 
+      product: {
+        id: String(state.id_counter+1),
+        name: "Ping pong "+String(state.id_counter+1),
+        category: "Sports",
+        price: "R$ 3,00",
+        description: "Includes 2 rackets, 3 balls and 1 net.",
+        image_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmBTU9UngAQttEWIptLiqXcZbkGG4V45iy4HRgjzYFowtmP55oAQ&usqp=CAc",
+      }
     });
-    this.setState({id_counter: id, items_list: list});
   }
 
-  render = () => {
-    return(
-      <View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Button
-            title="Add a new product"
-            onPress={() =>
-              this.props.navigation.navigate('NewProduct')
-            }
-            />
-          <TouchableOpacity onPress={this.addNewItem}><Text>Quick Add</Text></TouchableOpacity>
-        </View>
-        <SafeAreaView>
-          <FlatList
-            data={this.state.items_list}
-            extraData={this.state}
-            keyExtractor={item => item.id}
-            renderItem={this.renderItem}
-          ></FlatList>
-        </SafeAreaView>
+  return(
+    <View>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        {/*<Button
+          title="Add a new product"
+          onPress={() =>
+            this.props.navigation.navigate('NewProduct')
+          }
+        />*/}
+        <TouchableOpacity onPress={addNewItem}><Text>Quick add</Text></TouchableOpacity>
       </View>
-    );
-  }
+      <SafeAreaView>
+        <FlatList
+          data={state.items_list}
+          extraData={state}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+        ></FlatList>
+      </SafeAreaView>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -126,3 +119,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default Home;

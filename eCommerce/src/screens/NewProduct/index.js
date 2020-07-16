@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   SafeAreaView,
@@ -8,18 +8,21 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default class NewProduct extends React.Component{
-  constructor(props){
-    super(props);
-  }
-  render(){
-    return(
-      <SafeAreaView>
-          <Text>Hi</Text>
-      </SafeAreaView>
-    );
-  }
+import {Context} from '../../contexts/data';
+
+const NewProduct = () => {
+
+  const [state, dispatch] = useContext(Context);
+
+  return(
+    <SafeAreaView>
+        <Text>{"Last created: "+state.id_counter}</Text>
+    </SafeAreaView>
+  );
+  
 };
 
 const styles = StyleSheet.create({
 });
+
+export default NewProduct;
