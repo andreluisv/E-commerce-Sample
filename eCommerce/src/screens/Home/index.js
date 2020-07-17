@@ -10,8 +10,8 @@ import {
   Button
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import {Context} from '../../contexts/data';
+
 
 const Home = () => {
   [state, dispatch] = useContext(Context);
@@ -41,36 +41,20 @@ const Home = () => {
     );
   }
 
-  addNewItem = () => {
-    dispatch({type: 'NEW_PRODUCT', 
-      product: {
-        id: String(state.id_counter+1),
-        name: "Ping pong "+String(state.id_counter+1),
-        category: "Sports",
-        price: "R$ 3,00",
-        description: "Includes 2 rackets, 3 balls and 1 net.",
-        image_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRmBTU9UngAQttEWIptLiqXcZbkGG4V45iy4HRgjzYFowtmP55oAQ&usqp=CAc",
-      }
-    });
-  }
-
   editMe = (id) => {
     let list = state.items_list;
     list.forEach((item) => {if (item.id == id) item.name = "edited"});
     dispatch({type: 'EDIT_PRODUCT', newList: list});
   }
-
+  
   return(
     <View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Button
           title="Add a new product"
           onPress={() =>
             navigation.navigate('NewProduct')
           }
         />
-        <TouchableOpacity onPress={addNewItem}><Text>Quick add</Text></TouchableOpacity>
-      </View>
       <SafeAreaView>
         <FlatList
           data={state.items_list}

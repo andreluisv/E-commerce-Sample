@@ -27,11 +27,6 @@ const RootStack = () => {
             component={NewProduct}
             options={{
                 headerTitle: <Text>New Product</Text>,
-                headerRight: () => (
-                    <TouchableOpacity style={{marginRight: 5}}>
-                        <Text>Confirm</Text>
-                    </TouchableOpacity>
-                ),
             }}
         />
     </Stack.Navigator>
