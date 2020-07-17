@@ -9,11 +9,13 @@ import {
   TouchableOpacity,
   Button
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {Context} from '../../contexts/data';
 
 const Home = () => {
   [state, dispatch] = useContext(Context);
+  const navigation = useNavigation();
   
   const renderItem = ({ item: product }) => {
     return (
@@ -61,12 +63,12 @@ const Home = () => {
   return(
     <View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        {/*<Button
+        <Button
           title="Add a new product"
           onPress={() =>
-            this.props.navigation.navigate('NewProduct')
+            navigation.navigate('NewProduct')
           }
-        />*/}
+        />
         <TouchableOpacity onPress={addNewItem}><Text>Quick add</Text></TouchableOpacity>
       </View>
       <SafeAreaView>
